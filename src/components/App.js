@@ -9,10 +9,15 @@ import '../App.css';
 
 // component imports
 import Header from './Header';
-import MapComponent from './MapComponent';
+import { EventPageComponent } from './EventPageComponent';
+
+// container imports
+import MapContainer from '../containers/mapContainer';
+import EventContainer from '../containers/eventContainer';
+// import EventPageContainer from '../containers/EventPageContainer';
 
 // api call imports
-import {getArtist, getEvents} from '../apiCalls/apiCalls.js';
+import {getArtist, getEvents} from '../apiCalls/apiCalls.js.js';
 
 // actions import
 import { setCurrentArtist, setEvents, selectEvent, filterEvents, toggleFavorite } from '../actions';
@@ -48,9 +53,19 @@ export class App extends Component {
     return (
       <div className='app'>
         <Header />
-        <div style={{height: '400px'}}>
-          <MapComponent />
-        </div>
+        <Route exact path='/' render={() => (
+          <>
+          <div style={{height: '400px'}}>
+            <MapContainer />
+          </div>
+          <EventContainer />
+          </>
+        )} />
+        <Route path='/event/:id' render={({ match }) => {
+        console.log(match)
+        // <EventPageContainer id={match.params.id} />
+        return (<EventPageComponent event={match.params.id}/>)
+      }} />
       </div>
     )
   }
