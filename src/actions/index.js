@@ -8,14 +8,6 @@ export const setEvents = events => ({
   events
 });
 
-export const selectEvent = id => {
-  console.log(id)
-  return {
-    type: 'SET_EVENT',
-    id
-  }
-};
-
 export const filterEvents = event => ({
   type: 'FILTER_EVENTS',
   event

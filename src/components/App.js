@@ -9,39 +9,47 @@ import '../stylesheets/App.scss';
 
 // component imports
 import Header from './Header';
-import { EventPageComponent } from './EventPageComponent';
 
 // container imports
 import MapContainer from '../containers/MapContainer';
 import EventContainer from '../containers/EventContainer';
 import EventPageContainer from '../containers/EventPageContainer';
+import ArtistPageContainer from '../containers/ArtistPageContainer/ArtistPageContainer';
 
 // api call imports
-import {getArtist, getEvents} from '../apiCalls/apiCalls.js';
+import { getArtist, getEvents } from '../apiCalls/apiCalls.js';
 
 // actions import
-import { setCurrentArtist, setEvents, selectEvent, filterEvents, toggleFavorite } from '../actions';
+import { setCurrentArtist, setEvents, filterEvents, toggleFavorite } from '../actions';
 
 export class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true
+    }
+  }
 
-  componentDidMount() {
-    this.fetchArtist();
-    this.fetchEvents();
+  async componentDidMount() {
+    const artist = await this.fetchArtist();
+    await this.fetchEvents(artist);
+    this.setState({isLoading: false});
   }
 
   fetchArtist = async () => {
     try {
       const artist = await getArtist();
       this.props.setCurrentArtist(artist);
+      return artist
     }
     catch {
       console.log('artist')
     }
   }
 
-  fetchEvents = async () => {
+  fetchEvents = async artist => {
     try {
-      const events = await getEvents();
+      const events = await getEvents(artist);
       this.props.setEvents(events);
     }
     catch{
@@ -50,11 +58,13 @@ export class App extends Component {
   }
 
   render() {
-    return (
+    return !this.state.isLoading ?
+    (
       <div className='app'>
         <Header />
         <Route exact path='/' render={() => (
           <>
+          <ArtistPageContainer />
           <div style={{height: '400px'}}>
             <MapContainer />
           </div>
@@ -62,11 +72,11 @@ export class App extends Component {
           </>
         )} />
         <Route path='/event/:id' render={({ match }) => {
-        this.props.selectEvent(match.params.id)
-        return (<EventPageContainer event={match.params.id}/>)
+        return (<EventPageContainer eventId={match.params.id}/>)
       }} />
       </div>
     )
+    : null
   }
 }
 
@@ -74,7 +84,6 @@ const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setCurrentArtist,
     setEvents,
-    selectEvent
   }, dispatch)
 )
 

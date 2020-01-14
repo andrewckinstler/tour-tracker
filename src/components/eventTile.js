@@ -6,6 +6,7 @@ export const EventTile = ({ event }) => {
     <div>
       <h3><Link to={`/event/${event.id}`}>{event.venue.name}</Link></h3>
       <p>{event.venue.city}</p>
+      <p>{event.description}</p>
     </div>
   )
 }

@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import { EventPageComponent } from '../components/EventPageComponent';
-import React from 'react';
-import { Component } from 'react';
 
-export const mapStateToProps = ({ events, selectedEvent}) => ({
-    selectedEvent
+const mapStateToProps = (state, { eventId }) => ({
+    event: state.allEvents.find(event => (eventId === event.id))
 })
 
 export default connect(mapStateToProps)(EventPageComponent)

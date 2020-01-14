@@ -1,0 +1,23 @@
+.artist-card {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  background-color: #FAD8D6;
+
+  .artist-wrapper{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-column-gap: 30px;
+    align-items: center;
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    div {
+
+      
+    }
+  }
+}
