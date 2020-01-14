@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.leaflet-map,
+.leaflet-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+

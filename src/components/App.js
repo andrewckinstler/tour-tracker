@@ -5,19 +5,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // stylesheet import
-import '../App.css';
+import '../stylesheets/App.scss';
 
 // component imports
 import Header from './Header';
 import { EventPageComponent } from './EventPageComponent';
 
 // container imports
-import MapContainer from '../containers/mapContainer';
-import EventContainer from '../containers/eventContainer';
-// import EventPageContainer from '../containers/EventPageContainer';
+import MapContainer from '../containers/MapContainer';
+import EventContainer from '../containers/EventContainer';
+import EventPageContainer from '../containers/EventPageContainer';
 
 // api call imports
-import {getArtist, getEvents} from '../apiCalls/apiCalls.js.js';
+import {getArtist, getEvents} from '../apiCalls/apiCalls.js';
 
 // actions import
 import { setCurrentArtist, setEvents, selectEvent, filterEvents, toggleFavorite } from '../actions';
@@ -62,9 +62,8 @@ export class App extends Component {
           </>
         )} />
         <Route path='/event/:id' render={({ match }) => {
-        console.log(match)
-        // <EventPageContainer id={match.params.id} />
-        return (<EventPageComponent event={match.params.id}/>)
+        this.props.selectEvent(match.params.id)
+        return (<EventPageContainer event={match.params.id}/>)
       }} />
       </div>
     )
@@ -74,7 +73,8 @@ export class App extends Component {
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setCurrentArtist,
-    setEvents
+    setEvents,
+    selectEvent
   }, dispatch)
 )
 

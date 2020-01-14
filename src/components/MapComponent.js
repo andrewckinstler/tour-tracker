@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-import './MapComponent.css';
+import '../stylesheets/MapComponent.scss';
 
 
 
 export const MapComponent = ({ events }) => {
-    const position = [51.505, -0.09];
+    const position = [46.222226, -49.178133];
     return (
       <div className='leaflet-map'>
-      <Map center={position} zoom={6} style={{
+      <Map center={position} zoom={3.25} style={{
         height: '400px',
         width: '100%'
       }}>

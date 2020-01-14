@@ -1,5 +1,5 @@
 import React from 'react';
-import { EventTile } from './eventTile'
+import { EventTile } from './EventTile'
 
 export const EventList = ({ events }) => {
   return (<div>
