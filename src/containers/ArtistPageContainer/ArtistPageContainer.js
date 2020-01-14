@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { ArtistCard } from '../../components/ArtistCard';
+import { ArtistCard } from '../../components/ArtistCard/ArtistCard';
 
 const mapStateToProps = ({ currentArtist }) => ({
     artist: currentArtist

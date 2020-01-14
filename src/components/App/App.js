@@ -5,22 +5,22 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // stylesheet import
-import '../stylesheets/App.scss';
+import './App.scss';
 
 // component imports
-import Header from './Header';
+import Header from '../Header/Header';
 
 // container imports
-import MapContainer from '../containers/MapContainer';
-import EventContainer from '../containers/EventContainer';
-import EventPageContainer from '../containers/EventPageContainer';
-import ArtistPageContainer from '../containers/ArtistPageContainer/ArtistPageContainer';
+import MapContainer from '../../containers/MapContainer/MapContainer';
+import EventContainer from '../../containers/EventContainer/EventContainer';
+import EventPageContainer from '../../containers/EventPageContainer/EventPageContainer';
+import ArtistPageContainer from '../../containers/ArtistPageContainer/ArtistPageContainer';
 
 // api call imports
-import { getArtist, getEvents } from '../apiCalls/apiCalls.js';
+import { getArtist, getEvents } from '../../apiCalls/apiCalls.js';
 
 // actions import
-import { setCurrentArtist, setEvents, filterEvents, toggleFavorite } from '../actions';
+import { setCurrentArtist, setEvents, filterEvents, toggleFavorite } from '../../actions';
 
 export class App extends Component {
   constructor() {
@@ -80,7 +80,7 @@ export class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => (
+export const mapDispatchToProps = dispatch => (
   bindActionCreators({
     setCurrentArtist,
     setEvents,

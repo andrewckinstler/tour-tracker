@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stylesheets/ArtistCard.scss';
+import './ArtistCard.scss';
 
 export const ArtistCard = ({ artist }) => (
     <div className='artist-card'>
